@@ -29,5 +29,5 @@ installcask subler
 installcask textmate
 installcask tower
 installcask versions
-installcask vmware-fusion
+#installcask vmware-fusion
 installcask cyberduck
