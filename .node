@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Source: https://github.com/necolas/dotfiles
+
+# Test whether a command exists
+# $1 - cmd to test
+type_exists() {
+    if [ $(type -P $1) ]; then
+      return 0
+    fi
+    return 1
+}
+
+# Header logging
+e_header() {
+    printf "\n$(tput setaf 7)%s$(tput sgr0)\n" "$@"
+}
+
+# Success logging
+e_success() {
+    printf "$(tput setaf 64)✓ %s$(tput sgr0)\n" "$@"
+}
+
+# Error logging
+e_error() {
+    printf "$(tput setaf 1)x %s$(tput sgr0)\n" "$@"
+}
+
+run_npm() {
+	# Check for npm
+	if type_exists 'npm'; then
+	    e_header "Installing Node.js packages..."
+
+	    # List of npm packages
+	    local packages="bower grunt-cli jshint karma yo phonegap"
+
+	    # Install packages globally and quietly
+	    npm install $packages --global --quiet
+
+	    [[ $? ]] && e_success "Done"
+	else
+	    printf "\n"
+	    e_error "Error: npm not found."
+	    printf "Aborting...\n"
+	    exit
+	fi
+}
+
+# Not strictly Node but not sure where else to put this?
+run_ruby() {
+	e_header "Installing Compass..."
+	sudo gem install compass
+	[[ $? ]] && e_success "Done"
+}
+
+run_npm
+run_ruby
