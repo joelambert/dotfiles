@@ -52,6 +52,13 @@ brew install php55-mcrypt
 brew install android-sdk
 brew install ant
 
+# Provides script triggers on sleep/wake
+brew install sleepwatcher
+
+# Ensure sleepwatcher runs on login
+ln -sfv /usr/local/opt/sleepwatcher/de.bernhard-baehr.sleepwatcher-20compatibility.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher-20compatibility.plist
+
 #brew tap homebrew/versions
 #brew install lua52
 
