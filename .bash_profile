@@ -1,3 +1,6 @@
+# Add PEAR packages to the `$PATH`
+export PATH="$(brew --prefix php55)/bin:$PATH"
+
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
